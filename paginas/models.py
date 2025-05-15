@@ -1,21 +1,26 @@
 from django.db import models
 
-# Todas as classes DEVEM herdar de models.Model
-class Campus(models.Model):
-    nome = models.CharField(max_length=50)
-    def __str__(self):
-        return f"{self.nome}" 
-        
-    
+class Cliente(models.Model):
+    nome = models.CharField(max_length=100)
+    telefone = models.CharField(max_length=20)
+    email = models.EmailField()
 
-class Curso(models.Model):
-    nome = models.CharField(max_length=150)
-    campus = models.ForeignKey(Campus, on_delete=models.PROTECT)
+class Fotografo(models.Model):
+    nome = models.CharField(max_length=100)
+    especialidade = models.CharField(max_length=100)
+    telefone = models.CharField(max_length=20)
 
-class TipoSolicitacao(models.Model):
-    descricao = models.CharField(max_length=200)
-    prazo_externo = models.CharField(max_length=250)
-    prazo_externo_dias = models.PositiveSmallIntegerField(default=0)
-    prazo_interno = models.CharField(max_length=250)
-    prazo_interno_dias = models.PositiveSmallIntegerField(default=0)
-    concluido = models.BooleanField(default=False)
+class Estudio(models.Model):
+    nome = models.CharField(max_length=100)
+    endereco = models.CharField(max_length=200)
+    telefone = models.CharField(max_length=20)
+
+class SessaoFoto(models.Model):
+    data = models.DateField()
+    horario = models.TimeField()
+    tipo = models.CharField(max_length=50)
+    duracao = models.PositiveIntegerField()
+
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
+    fotografo = models.ForeignKey(Fotografo, on_delete=models.PROTECT)
+    estudio = models.ForeignKey(Estudio, on_delete=models.PROTECT)

@@ -1,25 +1,36 @@
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from.models import Campus, Curso, TipoSolicitacao
+from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-
+from .models import Cliente, Fotografo, Estudio, SessaoFoto
 
 class Inicio(TemplateView):
     template_name = "paginas/index.html"
-    
-class FormView(TemplateView):
-    template_name = "paginas/form.html"
 
-class CampusCreate(CreateView):
+class ClienteCreate(CreateView):
+    model = Cliente
+    fields = ['nome', 'telefone', 'email']
     template_name = 'paginas/form.html'
-    model = Campus
-    fields = ['nome']
     success_url = reverse_lazy('inicio')
-    extra_content = {'titulo' : 'Cadastro de Campus'}
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
 
-class CursoCreate(CreateView):
+class FotografoCreate(CreateView):
+    model = Fotografo
+    fields = ['nome', 'especialidade', 'telefone']
     template_name = 'paginas/form.html'
-    model = Curso
-    fields = [ 'nome', 'campus']
-    success_url = reverse_lazy('form')
-    extra_context = {'titulo' : 'Cadastro de Curso'}
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
+
+class EstudioCreate(CreateView):
+    model = Estudio
+    fields = ['nome', 'endereco', 'telefone']
+    template_name = 'paginas/form.html'
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
+
+class SessaoFotoCreate(CreateView):
+    model = SessaoFoto
+    fields = ['data', 'horario', 'tipo', 'duracao', 'cliente', 'fotografo', 'estudio']
+    template_name = 'paginas/form.html'
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
+

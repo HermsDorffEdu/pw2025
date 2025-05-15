@@ -1,10 +1,16 @@
-
-from .views import CampusCreate, CursoCreate
 from django.urls import path
-from .views import Inicio
+from .views import (
+    Inicio,
+    ClienteCreate,
+    FotografoCreate,
+    EstudioCreate,
+    SessaoFotoCreate
+)
+
 urlpatterns = [
-    path("index/", Inicio.as_view(), name = "inicio"),
-    path("form/", form.as_view(), name = "form"),
-    path("Adicionar/campus/", CampusCreate.as_view(), name ="inserir-campus"),
-    path("Adicionar/curso/", CursoCreate.as_view(), name ="inserir-curso"),
+    path("", Inicio.as_view(), name="inicio"),
+    path("adicionar/cliente/<int:pk/", ClienteCreate.as_view(), name="inserir-cliente"),
+    path("adicionar/fotografo/<int:pk/", FotografoCreate.as_view(), name="inserir-fotografo"),
+    path("adicionar/estudio/<int:pk/", EstudioCreate.as_view(), name="inserir-estudio"),
+    path("adicionar/sessao/<int:pk/", SessaoFotoCreate.as_view(), name="inserir-sessao"),
 ]
