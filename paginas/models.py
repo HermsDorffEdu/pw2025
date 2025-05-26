@@ -20,7 +20,9 @@ class SessaoFoto(models.Model):
     horario = models.TimeField()
     tipo = models.CharField(max_length=50)
     duracao = models.PositiveIntegerField()
-
+    valor = models.DecimalField(max_digits=7,decimal_places=2)
+    finalizado = models.BooleanField(default=False)
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
     fotografo = models.ForeignKey(Fotografo, on_delete=models.PROTECT)
     estudio = models.ForeignKey(Estudio, on_delete=models.PROTECT)
+
