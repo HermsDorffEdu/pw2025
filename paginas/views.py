@@ -69,3 +69,33 @@ class SessaoFotoUpdate(UpdateView):
     success_url = reverse_lazy('inicio')
     extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
 
+#########################################################
+
+class ClienteDelete(DeleteViewView):
+    model = Cliente
+    fields = ['nome', 'telefone', 'email']
+    template_name = 'paginas/form.html'
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
+
+
+class FotografoDelete(DeleteViewView):
+    model = Fotografo
+    fields = ['nome', 'especialidade', 'telefone']
+    template_name = 'paginas/form.html'
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
+
+class EstudioDelete(DeleteViewView):
+    model = Estudio
+    fields = ['nome', 'endereco', 'telefone']
+    template_name = 'paginas/form.html'
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
+
+class SessaoFotoDelete(DeleteViewView):
+    model = SessaoFoto
+    fields = ['data', 'horario', 'tipo', 'duracao', 'cliente', 'fotografo', 'estudio', 'finalizado', 'valor']
+    template_name = 'paginas/form.html'
+    success_url = reverse_lazy('inicio')
+    extra_content = {'Cadastro Fotografia': 'Atualização de fotos', 'Enviar dados': 'protocolar',}
